@@ -41,7 +41,7 @@ document.onkeyup = function(event) {
         return false;
     }
 
-    // WIN condition and update wins count
+    // WIN condition and increments wins count
     if (userGuess == computerGuess) {
     wins++;
 
@@ -54,16 +54,38 @@ document.onkeyup = function(event) {
     }
 
 
-    // WRONG condition that decrements guessesLeft count
+    // WRONG condition that decrements guessesLeft count; appends the letter that user guesses
     else if (userGuess != computerGuess) {
-    guessesLeft--;
+        guessesLeft--;
+        if (guessesLeft > 0) {
+            var currentGuessesDiv = document.getElementById('currentGuesses');
+            currentGuessesDiv.textContent = currentGuesses;
+            currentGuesses.push(userGuess);
+            console.log(currentGuesses);
 
-    var guessesLeftDiv = document.getElementById('guessesLeft'); //created new lossesDiv to hold ties in html
-    guessesLeftDiv.textContent = guessesLeft; //updates lossesDiv with the current value for ties
+            //created new guessesLeftDiv to hold guesses in html
+            var guessesLeftDiv = document.getElementById('guessesLeft'); 
+            //updates guessesLeftDiv with the current value for ties
+            guessesLeftDiv.textContent = guessesLeft;
 
-        if (guessesLeft == 0) {
-            
         }
+        // LOSE condition that increments losses count
+        else {
+            losses++;
+
+            var lossesDiv = document.getElementById('losses'); //created new tiesDiv to hold ties in html
+            lossesDiv.textContent = losses; //updates tiesDiv with the current value for ties
+        }
+    
+    
+        
+
+    
+
+    
+
+        
+
     }
 
     
